@@ -147,5 +147,5 @@ class StringObject(object):
         
 if __name__ == "__main__":
     bktree=BKTree()
-    bktree.insert(IMetricDistance('hey'))
+    bktree.insert(StringObject('hey'))
     print bktree
