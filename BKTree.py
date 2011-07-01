@@ -107,10 +107,7 @@ class BKNode(object):
             return False
         else:
             d=obj.distance(self.obj)
-            #print 's:%s is %d away from o:%s'%(self.obj,d,obj)
-            #print self.children
             if self.children.has_key(d):
-                #print 'going to %s'%self.children[d]
                 self.children[d].insert(obj)
             else:
                 self.children[d]=BKNode(obj)
@@ -118,15 +115,16 @@ class BKNode(object):
             
     def find(self,obj,threshold):
         d=obj.distance(self.obj)
-        #print 's:%s is %d from %s'%(self.obj,d,obj)
         if d <= threshold:
             yield self.obj
+            
         dmin=d-threshold
         dmax=d+threshold
         for i in range(dmin,dmax+1):
             if self.children.has_key(i):
                 for child in self.children[i].find(obj,threshold):
                     yield child
+                    
     def __str__(self):
         children_str=''
         for k in self.children:
